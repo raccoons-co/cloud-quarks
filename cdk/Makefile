@@ -14,11 +14,11 @@ install-aws-cdk: depends ## Install AWS-CDK
 	$(sh_c) 'sudo npm install -g aws-cdk'
 	
 .PHONY: init-sample
-init-sample: depends ## Initialize AWS CDK Java app sample
+init-sample: ## Initialize AWS CDK Java app sample
 	$(sh_c) 'mkdir ~/hello-cdk && cd ~/hello-cdk && cdk init app --language java'
 
 .PHONY: build-sample
-build-sample: depends ## Build AWS CDK Java app sample
+build-sample: ## Build AWS CDK Java app sample
 	$(sh_c) 'cd ~/hello-cdk && mvn compile -q'
 	
 .PHONY: clean
