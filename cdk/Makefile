@@ -11,14 +11,17 @@ help: ## Print this help
 
 .PHONY: install-aws-cdk
 install-aws-cdk: depends ## Run linter for YAML files
-	$(sh_c) 'sudo npm install -g aws-cdk && cdk --version'
+	$(sh_c) 'sudo npm install -g aws-cdk'
 	
 .PHONY: init-cdk-java-sample
 init-cdk-java-sample: depends ## Run linter for YAML files
-	$(sh_c) 'mkdir ~/hello-cdk \
-		&& cd ~/hello-cdk \
-		&& cdk init app --language java'
+	$(sh_c) 'mkdir ~/hello-cdk && cd ~/hello-cdk && cdk init app --language java'
+	
+.PHONY: clean
+clean: ## Clean workspace
+	$(sh_c) 'rm -r ~/hello-cdk/'
 
 .PHONY: depends
 depends: ## Install software dependencies
-	$(sh_c) 'sudo yum install -y mc'
+	$(sh_c) 'git config --global user.email "ok@raccoons.co" && git config --global user.name "raccoon1"'
+#	$(sh_c) 'sudo yum install -y mc'
