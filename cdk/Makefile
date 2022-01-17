@@ -20,4 +20,4 @@ init-cdk-java-sample: depends ## Run linter for YAML files
 
 .PHONY: depends
 depends: ## Install software dependencies
-	$(sh_c) 'echo Depends'
+	$(sh_c) 'sudo yum install -y mc'
