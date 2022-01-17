@@ -9,11 +9,10 @@ help: ## Print this help
 	@echo "List of available commands:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: aws-cdk
-aws-cdk: depends ## Run linter for YAML files
+.PHONY: install-aws-cdk
+install-aws-cdk: depends ## Run linter for YAML files
 	$(sh_c) 'sudo npm install -g aws-cdk && cdk --version'
-	$(sh_c) 'cdk --version'
 	
 .PHONY: depends
 depends: ## Install software dependencies
-	$(sh_c) 'echo Hi!'
+	$(sh_c) 'echo Depends'
