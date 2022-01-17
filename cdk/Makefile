@@ -14,3 +14,6 @@ aws-cdk: depends ## Run linter for YAML files
 	$(sh_c) 'sudo npm install -g aws-cdk && cdk --version'
 	$(sh_c) 'cdk --version'
 	
+.PHONY: depends
+depends: ## Install software dependencies
+	$(sh_c) 'echo Hi!'
