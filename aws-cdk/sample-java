@@ -7,7 +7,7 @@ set -e
 do_install()
 {
     sh_c='sh -c'
-    $sh_c "mkdir ~/mkdir hello-cdk && cd hello-cdk && cdk init app --language java && mvn compile -q"
+    $sh_c "mkdir ~/hello-cdk && cd hello-cdk && cdk init app --language java && mvn compile -q"
 }
 
 do_install
