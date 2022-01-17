@@ -15,8 +15,9 @@ install-aws-cdk: depends ## Run linter for YAML files
 	
 .PHONY: init-cdk-java-sample
 init-cdk-java-sample: depends ## Run linter for YAML files
-	$(sh_c) 'mkdir ~/hello-cdk && cd ~/hello-cdk'
-	$(sh_c) 'cdk init app --language java'
+	$(sh_c) 'mkdir ~/hello-cdk \
+		&& cd ~/hello-cdk \
+		&& cdk init app --language java'
 
 .PHONY: depends
 depends: ## Install software dependencies
