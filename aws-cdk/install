@@ -2,7 +2,7 @@
 set -e
 
 # This script is meant for quick & easy install via:
-#   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/aws-quarks/main/aws-cdk/install | sudo sh
+#   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/install | sudo sh
 
 do_install()
 {
