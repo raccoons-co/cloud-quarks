@@ -1,4 +1,4 @@
-# Makefile based wrapper for automating building the AWS CDK applications
+# Makefile based wrapper for automating building the AWS CDK Java applications
 # This wrapper is meant for quick & easy install via:
 #   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/raccoonizer/main/Makefile --output Makefile
 
@@ -19,6 +19,12 @@ aws-cdk: ## Install AWS CDK
 .PHONY: bootstrap-cdk
 bootstrap-cdk: ## Bootstrapping AWS CDK environment
 	$(sh_c) 'cdk bootstrap'
+
+.PHONY: init-cdk-app
+init-cdk-app: ## Initialize AWS CDK Java application
+	@[ $(project) ] || ( echo "Usage: make init-cdk-app project=<NAME>" ; exit 1 )
+	$(sh_c) 'mkdir $(project) && cd $(project) && cdk init app --language=java'
+	$(sh_c) 'cp Makefile $(project)'
 
 .PHONY: build
 build: ## Build App Stack
