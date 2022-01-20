@@ -15,3 +15,4 @@ cd <NAME>
 git remote add origin https://github.com/<ACCOUNT>/<NAME>.git
 git branch -M main
 ````
+Then open project in IntelliJ IDEA and `push` changes to remote
