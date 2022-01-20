@@ -25,7 +25,7 @@ init-cdk-app: ## Initialize AWS CDK Java application
 	@[ $(project) ] || ( echo "Usage: make init-cdk-app project=<NAME>" ; exit 1 )
 	$(sh_c) 'mkdir $(project) && cd $(project) && cdk init app --language=java'
 	$(sh_c) 'cp Makefile $(project)'
-	$(sh_c) 'cd $(project); git add Makefile && git branch -M main && git commit -m "Add Makefile"'
+	$(sh_c) 'cd $(project); git add Makefile; git branch -M main; git commit -m "Add Makefile"'
 
 .PHONY: build
 build: ## Build App Stack
