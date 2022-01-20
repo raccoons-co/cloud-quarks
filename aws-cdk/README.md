@@ -10,3 +10,8 @@ make aws-cdk
 ````
 make init-cdk-app project=<NAME>
 ````
+````
+cd <NAME>
+git remote add origin https://github.com/<ACCOUNT>/<NAME>.git
+git branch -M main
+````
