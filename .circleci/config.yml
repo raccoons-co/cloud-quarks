@@ -20,6 +20,7 @@ jobs:
         - run:
             name: "Download Makefile"
             command: 'curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile'
+        - run: 'sudo yum install make'
         - run: 'make aws-cdk'
         - run: 'make init-cdk-app project=TestProject'
         - run: 'cd TestProject && make build'
