@@ -1,0 +1,18 @@
+version: 2.1
+
+jobs:
+  testMakefile:
+    docker:
+      - image: cimg/base:stable
+    steps:
+          - run:
+              name: "Try Makefile"
+              command: |
+              curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
+              make aws-cdk
+              make init-cdk-app project=TestProject
+
+workflows:
+  testMakefileWorkflow:
+    jobs:
+      - testMakefile
