@@ -8,10 +8,10 @@ jobs:
       - run:
           name: "Download Makefile"
           command: 'curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile'
-      -run:
+      - run:
           name: "make aws-cdk installation"
           command: 'make aws-cdk'
-      -run:
+      - run:
           command: 'make init-cdk-app project=TestProject'
 
 
