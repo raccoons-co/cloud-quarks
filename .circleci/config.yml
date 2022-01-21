@@ -3,11 +3,11 @@ version: 2.1
 commands:
   validate:
     parameters:
-      to:
-        default: "world"
+      os:
+        default: "unknown"
         type: string
     steps:
-      - run: 'echo "XXX"'
+      - run: 'echo "<<parameters.os>>"'
 
 jobs:
   testMakefileDebian:
@@ -20,7 +20,8 @@ jobs:
       - run: 'make aws-cdk'
       - run: 'make init-cdk-app project=TestProject'
       - run: 'cd TestProject && make build'
-      - validate: ''
+      - validate:
+          os: 'Debian'
 
 
   testMakefileAmazonLinux:
