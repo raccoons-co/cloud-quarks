@@ -2,8 +2,13 @@ version: 2.1
 
 commands:
   validate:
+    parameters:
+      to:
+        default: "world"
+        type: string
     steps:
-      - run: echo 'XXX'
+      - run: 'echo "XXX"'
+
 jobs:
   testMakefileDebian:
     docker:
