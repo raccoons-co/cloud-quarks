@@ -27,7 +27,7 @@ jobs:
         - image: amazonlinux:latest
       steps:
         - run: 'yum -y install make sudo git'
-        - run: 'amazon-linux-extras enable epel && yum -y install epel-release nodejs'
+        - run: 'amazon-linux-extras enable epel && yum -y install epel-release && yum -y install nodejs'
         - validate:
             os: 'AmazonLinux'
 
