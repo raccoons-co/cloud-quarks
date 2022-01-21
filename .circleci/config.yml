@@ -1,5 +1,9 @@
 version: 2.1
 
+commands:
+  validate:
+    steps:
+      - run: echo 'XXX'
 jobs:
   testMakefileDebian:
     docker:
@@ -11,6 +15,7 @@ jobs:
       - run: 'make aws-cdk'
       - run: 'make init-cdk-app project=TestProject'
       - run: 'cd TestProject && make build'
+      - validate: ''
 
 
   testMakefileAmazonLinux:
