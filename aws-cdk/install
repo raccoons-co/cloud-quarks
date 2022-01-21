@@ -26,6 +26,7 @@ do_install(){
 		      sudo apt-get update
 		      sudo apt install maven
 		    fi
+		    echo $lsb_dist
 	      ;;
       darwin)
         brew install aws-cdk
