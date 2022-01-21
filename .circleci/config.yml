@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  testMakefile:
+  testMakefileDebian:
     docker:
       - image: cimg/node:16.3.0
     steps:
@@ -15,9 +15,17 @@ jobs:
       - run:
           command: 'cd TestProject && make build'
 
+  testMakefileAmazonLinux:
+    docker:
+      - image: amazonlinux:latest
+    steps:
+      - run:
+          name: "Download Makefile"
+          command: 'curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile'
 
 
 workflows:
   testMakefileWorkflow:
     jobs:
-      - testMakefile
+      - testMakefileDebian
+      - testMakefileAmazon
