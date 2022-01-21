@@ -26,7 +26,8 @@ jobs:
       docker:
         - image: amazonlinux:latest
       steps:
-        - run: 'yum -y install make sudo git nodejs'
+        - run: 'yum -y install make sudo git'
+        - run: 'yum -i install nodejs --enablerepo=epel-testing'
         - validate:
             os: 'AmazonLinux'
 
