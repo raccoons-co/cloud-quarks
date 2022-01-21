@@ -17,10 +17,10 @@ toLowerCase() {
 
 do_install(){
 
-    os="$( uname -s | toLowerCase )"
+    os=$( uname -s | toLowerCase )
     case $os in
 	    linux)
-	      lsb_dist="$( get_distribution | toLowerCase )"
+	      lsb_dist=$( get_distribution | toLowerCase )
 	      if [ "$lsb_dist" = "ubuntu" ] || [ "$lsb_dist" = "debian" ]; then
 		      npm install -g aws-cdk
 		      sudo apt-get update
@@ -28,7 +28,7 @@ do_install(){
 		    fi
 	      ;;
       darwin)
-        echo $os
+        brew install aws-cdk
 	      ;;
     esac
     sh_c='sh -c'
