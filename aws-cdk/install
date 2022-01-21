@@ -18,7 +18,9 @@ do_install()
 	    linux)
 	      lsb_dist="$( get_distribution | tr '[:upper:]' '[:lower:]' )"
 	      if [ "$lsb_dist" = "ubuntu" ] || [ "$lsb_dist" = "debian" ]; then
-		      echo "DEBIAN"
+		      npm install -g aws-cdk
+		      sudo apt-get update
+		      sudo apt install maven
 		    fi
 	      ;;
       darwin)
@@ -26,8 +28,8 @@ do_install()
 	      ;;
     esac
     sh_c='sh -c'
-#    $sh_c "npm install -g aws-cdk"
-#    $sh_c "yum install -y maven"
+# $sh_c "npm install -g aws-cdk"
+# $sh_c "yum install -y maven"
 }
 
 do_install
