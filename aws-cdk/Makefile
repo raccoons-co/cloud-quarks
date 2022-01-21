@@ -29,11 +29,11 @@ init-cdk-app: ## Initialize AWS CDK Java application
 
 .PHONY: build
 build: ## Build App Stack
-	$(sh_c) 'mvn compile -q'
+	$(sh_c) 'mvn compile -q && cdk synth'
 
 .PHONY: deploy
 deploy: build ## Deploy App Stack
-	$(sh_c) 'cdk synth && cdk deploy'
+	$(sh_c) 'cdk deploy'
 
 .PHONY: destroy
 destroy:  ## Destroy App Stack
