@@ -5,12 +5,16 @@ jobs:
     docker:
       - image: cimg/node:16.3.0
     steps:
-          - run:
-              name: "Try Makefile"
-              command: |
-                curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
-                make aws-cdk
-                make init-cdk-app project=TestProject
+      - run:
+          name: "Download Makefile"
+          command: 'curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile'
+      -run:
+          name: "make aws-cdk installation"
+          command: 'make aws-cdk'
+      -run:
+          command: 'make init-cdk-app project=TestProject'
+
+
 
 workflows:
   testMakefileWorkflow:
