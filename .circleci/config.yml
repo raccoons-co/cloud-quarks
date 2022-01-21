@@ -26,7 +26,7 @@ jobs:
       docker:
         - image: amazonlinux:latest
       steps:
-        - run: 'yum -y install make sudo git'
+        - run: 'yum -y install make sudo git nodejs'
         - validate:
             os: 'AmazonLinux'
 
