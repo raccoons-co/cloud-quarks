@@ -20,7 +20,7 @@ jobs:
         - run:
             name: "Download Makefile"
             command: 'curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile'
-        - run: 'yum -y groupinstall "Developer tools"'
+        - run: 'yum -y groupinstall "Development Tools"'
         - run: 'make aws-cdk'
         - run: 'make init-cdk-app project=TestProject'
         - run: 'cd TestProject && make build'
