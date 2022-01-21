@@ -15,15 +15,15 @@ do_install()
 {
     os="$( uname -s | tr '[:upper:]' '[:lower:]' )"
     case $os in
-	      linux)
-	        lsb_dist="$( get_distribution | tr '[:upper:]' '[:lower:]' )"
-	        if [ "$lsb_dist" = "ubuntu" ] || [ "$lsb_dist" = "debian" ]; then
-		        echo "DEBIAN"
-		      fi
-	    ;;
-	darwin)
-	    echo $os
-	    ;;
+	    linux)
+	      lsb_dist="$( get_distribution | tr '[:upper:]' '[:lower:]' )"
+	      if [ "$lsb_dist" = "ubuntu" ] || [ "$lsb_dist" = "debian" ]; then
+		      echo "DEBIAN"
+		    fi
+	      ;;
+      darwin)
+        echo $os
+	      ;;
     esac
     sh_c='sh -c'
 #    $sh_c "npm install -g aws-cdk"
