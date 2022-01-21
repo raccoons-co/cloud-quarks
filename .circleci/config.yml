@@ -34,4 +34,4 @@ workflows:
   testMakefileWorkflow:
     jobs:
       - testMakefileDebian
-      - testMakefileAmazonLinux
+      #- testMakefileAmazonLinux
