@@ -20,14 +20,12 @@ jobs:
     steps:
       - validate:
 
-# testMakefileAmazonLinux:
-#   docker:
-#      - image: amazonlinux:latest
-#    steps:
-#      - validate:
+#  testMakefileAmazonLinux:
+      #    docker:
+      #- image: amazonlinux:latest
 
 workflows:
   testMakefileWorkflow:
     jobs:
       - testMakefileDebian
-      - testMakefileAmazonLinux
+      #- testMakefileAmazonLinux
