@@ -3,9 +3,18 @@ set -e
 
 # This script is meant for quick & easy install via:
 #   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/install | sudo sh
+get_distribution() {
+    lsb_dist=""
+    if [ -r /etc/os-release ]; then
+	lsb_dist="$(. /etc/os-release && echo "$ID")"
+    fi
+    echo "$lsb_dist"
+}
 
 do_install()
 {
+    os="$( uname -s | tr '[:upper:]' '[:lower:]' )"
+    echo $os
     sh_c='sh -c'
     $sh_c "npm install -g aws-cdk"
     $sh_c "yum install -y maven"
