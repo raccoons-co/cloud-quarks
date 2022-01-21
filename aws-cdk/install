@@ -31,7 +31,7 @@ do_install(){
 		    fi
 	      ;;
       darwin)
-        brew install aws-cdk
+        brew install aws-cdk maven
 	      ;;
     esac
     sh_c='sh -c'
