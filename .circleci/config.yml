@@ -7,34 +7,28 @@ commands:
         default: "unknown"
         type: string
     steps:
-      - run: 'echo "<<parameters.os>>"'
-
-jobs:
-  testMakefileDebian:
-    docker:
-      - image: cimg/node:16.3.0
-    steps:
       - run:
           name: "Download Makefile"
           command: 'curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile'
       - run: 'make aws-cdk'
       - run: 'make init-cdk-app project=TestProject'
       - run: 'cd TestProject && make build'
+
+jobs:
+  testMakefileDebian:
+    docker:
+      - image: cimg/node:16.3.0
+    steps:
       - validate:
           os: 'Debian'
-
 
   testMakefileAmazonLinux:
       docker:
         - image: amazonlinux:latest
       steps:
-        - run:
-            name: "Download Makefile"
-            command: 'curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile'
         - run: 'yum -y install make sudo git'
-        - run: 'make aws-cdk'
-        - run: 'make init-cdk-app project=TestProject'
-        - run: 'cd TestProject && make build'
+        - validate:
+            os: 'AmazonLinux'
 
 workflows:
   testMakefileWorkflow:
