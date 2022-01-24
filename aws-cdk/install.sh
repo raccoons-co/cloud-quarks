@@ -8,7 +8,7 @@ get_distribution() {
   if [ -r /etc/os-release ]; then
 	  lsb_dist=$(. /etc/os-release && echo "$ID")
   fi
-    echo $lsb_dist
+    echo "$lsb_dist"
 }
 
 toLowerCase() {
