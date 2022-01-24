@@ -28,6 +28,7 @@ do_install(){
 		      sudo apt install maven
 		    fi
 		    if [ "$lsb_dist" = "amzn" ]; then
+		      npm install -g aws-cdk
 		      sudo yum -y install maven
 		    fi
 	      ;;
