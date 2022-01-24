@@ -29,7 +29,7 @@ jobs:
       docker:
         - image: amazonlinux:latest
       steps:
-        - run: 'yum -y install make sudo git'
+        - run: 'yum -y install make sudo git tar'
         - run: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
             . ~/.nvm/nvm.sh
