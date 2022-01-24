@@ -39,4 +39,4 @@ workflows:
       - shellcheck/check:
           dir: ./aws-cdk
       - testMakefileDebian
-      #- testMakefileAmazonLinux
+      - testMakefileAmazonLinux
