@@ -30,7 +30,10 @@ jobs:
         - image: amazonlinux:latest
       steps:
         - run: 'yum -y install make sudo git'
-        - run: 'amazon-linux-extras install epel -y'
+        - run: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+            . ~/.nvm/nvm.sh
+            nvm install node
         - run: 'yum -y install npm'
         - validate:
             os: 'AmazonLinux'
