@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  shellcheck: circleci/shellcheck@2.2.4
+
 commands:
   validate:
     parameters:
@@ -33,5 +36,7 @@ jobs:
 workflows:
   testMakefileWorkflow:
     jobs:
+      - shellcheck/check:
+          dir: ./aws-cdk/install
       - testMakefileDebian
       #- testMakefileAmazonLinux
