@@ -37,6 +37,6 @@ workflows:
   testMakefileWorkflow:
     jobs:
       - shellcheck/check:
-          dir: ./aws-cdk/install
+          dir: ./aws-cdk
       - testMakefileDebian
       #- testMakefileAmazonLinux
