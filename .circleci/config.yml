@@ -29,10 +29,10 @@ jobs:
       docker:
         - image: amazonlinux:latest
       steps:
+        - run: 'yum -y install make sudo git'
         - run: |
             curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
             yum install -y nodejs
-        - run: 'yum -y install make sudo git tar'
         - validate:
             os: 'AmazonLinux'
 
