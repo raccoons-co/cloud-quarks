@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# This script is meant for quick & easy install via:
+# This script is meant for quick & easy install.sh via:
 #   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/install | sudo sh
 get_distribution() {
   lsb_dist=""
