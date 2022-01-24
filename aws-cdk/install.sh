@@ -26,7 +26,7 @@ do_install(){
 		      sudo apt-get update
 		      sudo apt install maven
 		    fi
-		    if [ "$lsb_dist" = "amzn"]; then
+		    if [ "$lsb_dist" = "amzn" ]; then
 		      sudo yum -y install maven
 		    fi
 	      ;;
