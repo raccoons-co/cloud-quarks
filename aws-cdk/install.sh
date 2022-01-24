@@ -2,7 +2,7 @@
 set -e
 
 # This script is meant for quick & easy install.sh via:
-#   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/install | sudo sh
+#   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/install.sh | sudo sh
 get_distribution() {
   lsb_dist=""
   if [ -r /etc/os-release ]; then
