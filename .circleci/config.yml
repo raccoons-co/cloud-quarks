@@ -29,7 +29,7 @@ jobs:
       docker:
         - image: amazonlinux:latest
       steps:
-        - run: 'yum install nodejs npm --enablerepo=epel'
+        - run: 'amazon-linux-extras install epel -y'
         - run: 'yum -y install make sudo git'
         - validate:
             os: 'AmazonLinux'
