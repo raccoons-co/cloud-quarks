@@ -34,7 +34,6 @@ do_install(){
         brew install aws-cdk maven
 	      ;;
     esac
-    sh_c='sh -c'
 }
 
 do_install
