@@ -1,6 +1,6 @@
 # Welcome to AWS CDK world!
 
-Example run:
+### Simply run
 ```` 
 curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
 ````
