@@ -16,3 +16,7 @@ git remote add origin https://github.com/<ACCOUNT>/<NAME>.git
 git branch -M main
 ````
 Then open project in IntelliJ IDEA and `push` changes to remote
+
+### Further reading
+- [AWS CDK Reference Documentation](https://docs.aws.amazon.com/cdk/api/v2/)
+- [AWS CDK Java Examples](https://github.com/aws-samples/aws-cdk-examples/tree/master/java)
