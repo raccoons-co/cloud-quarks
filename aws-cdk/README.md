@@ -1,6 +1,4 @@
-# Welcome to AWS CDK Java applications world!
-
-### 
+## Welcome to AWS CDK Java applications world! 
 
 ### Prerequisites of your environment
 - Debian GNU/Linux, Amazon Linux or macOS
