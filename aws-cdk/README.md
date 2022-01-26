@@ -1,4 +1,4 @@
-# Welcome to AWS CDK world!
+# Welcome to AWS CDK Java applications world!
 
 ### Simply run
 ```` 
