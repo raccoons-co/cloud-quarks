@@ -50,4 +50,4 @@ workflows:
           dir: ./aws-cdk
       - testMakefileDebian
       - testMakefileAmazonLinux
-      - testMakefileMacOS
+      #- testMakefileMacOS
