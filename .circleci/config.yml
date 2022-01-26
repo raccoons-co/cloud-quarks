@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   shellcheck: circleci/shellcheck@2.2.4
+  macos: circleci/macos@2.0.1
 
 commands:
   validate:
@@ -35,6 +36,11 @@ jobs:
         - validate:
             os: 'AmazonLinux'
 
+      testMakefileMacOS:
+        steps:
+          - validate:
+              os: 'macOS'
+
 workflows:
   testMakefileWorkflow:
     jobs:
@@ -42,3 +48,4 @@ workflows:
           dir: ./aws-cdk
       - testMakefileDebian
       - testMakefileAmazonLinux
+      - testMakefileMacOS
