@@ -7,6 +7,10 @@
 # Using 'sh -c' can avoid situation then VCS do not preserves file permissions
 sh_c := sh -c
 
+ifndef aws_profile
+  aws_profile=default
+endif
+
 .PHONY: help
 help: ## Print this help
 	@echo "List of available commands:"
@@ -18,7 +22,7 @@ aws-cdk: ## Install AWS CDK
 
 .PHONY: bootstrap-cdk
 bootstrap-cdk: ## Bootstrapping AWS CDK environment
-	$(sh_c) 'cdk bootstrap'
+	$(sh_c) 'cdk bootstrap --profile ${aws_profile}'
 
 .PHONY: init-cdk-app
 init-cdk-app: ## Initialize AWS CDK Java application
@@ -33,8 +37,4 @@ build: ## Build App Stack
 
 .PHONY: deploy
 deploy: build ## Deploy App Stack
-	$(sh_c) 'cdk deploy'
-
-.PHONY: destroy
-destroy:  ## Destroy App Stack
-	$(sh_c) 'cdk destroy'
+	$(sh_c) 'cdk deploy --profile ${aws_profile}'
