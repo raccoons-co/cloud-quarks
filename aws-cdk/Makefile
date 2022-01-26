@@ -7,6 +7,7 @@
 # Using 'sh -c' can avoid situation then VCS do not preserves file permissions
 sh_c := sh -c
 
+# Use default value for aws_profile variable if it's not defined
 ifndef aws_profile
   aws_profile=default
 endif
