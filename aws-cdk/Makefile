@@ -1,7 +1,8 @@
-# Makefile based wrapper for automating building the AWS CDK Java applications
-# This wrapper is meant for quick & easy install.sh via:
-#   $ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
+# This Makefile based wrapper automates build of AWS CDK Java application.
+# Simply install with
+#   curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
 
+# Defines default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
 # Using 'sh -c' can avoid situation then VCS do not preserves file permissions
