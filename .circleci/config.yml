@@ -1,15 +1,20 @@
 version: 2.1
 
+# Orbs are reusable snippets of code that help automate repeated processes, speed up project setup,
+# and make it easy to integrate with third-party tools.
 orbs:
   shellcheck: circleci/shellcheck@2.2.4
   macos: circleci/macos@2.0.1
 
+# Describes reusable commands
 commands:
-  validate:
+  # Validate Makefile work building Test AWS CDK Java application.
+  validateWith:
     parameters:
-      os:
+      os: # Unused parameter
         default: "unknown"
         type: string
+    # Steps are a collection of executable commands which are run during a job
     steps:
       - run:
           name: "Download Makefile"
@@ -18,14 +23,17 @@ commands:
       - run: 'make init-cdk-app project=TestProject'
       - run: 'cd TestProject && make build'
 
+# Jobs are collections of steps.
 jobs:
+  # Describes job steps to execute Makefile validation with Debian Linux.
   testMakefileDebian:
     docker:
       - image: cimg/node:16.3.0
     steps:
-      - validate:
+      - validateWith:
           os: 'Debian'
 
+  # Describes job steps to execute Makefile validation with Amazon Linux.
   testMakefileAmazonLinux:
       docker:
         - image: amazonlinux:latest
@@ -36,13 +44,15 @@ jobs:
         - validate:
             os: 'AmazonLinux'
 
-  testMakefileMacOS:
+  # Describes job steps to execute Makefile validation with macOS.
+  testMakefileMacOs:
        macos:
          xcode: 12.5.1
        steps:
-        - validate:
+        - validateWith:
             os: 'macOS'
 
+# A workflow is a set of rules for defining a collection of jobs and their run order.
 workflows:
   testMakefileWorkflow:
     jobs:
@@ -50,4 +60,4 @@ workflows:
           dir: ./aws-cdk
       - testMakefileDebian
       - testMakefileAmazonLinux
-      #- testMakefileMacOS
+      #- testMakefileMacOs
