@@ -16,6 +16,13 @@ git remote add origin https://github.com/<ACCOUNT>/<NAME>.git
 git branch -M main
 ````
 Then open project in IntelliJ IDEA and `push` changes to remote
+````
+make deploy
+````
+or
+````
+make deploy aws_profile=<AWS_PROFILE>
+````
 
 Run `make` or `make help` to list available commands.
 
