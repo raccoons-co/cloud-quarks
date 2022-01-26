@@ -41,7 +41,7 @@ jobs:
         - run: 'yum -y install make sudo git'
         - run: 'curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -'
         - run: 'yum install -y nodejs'
-        - validate:
+        - validateWith:
             os: 'AmazonLinux'
 
   # Describes job steps to execute Makefile validation with macOS.
