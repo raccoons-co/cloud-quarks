@@ -36,10 +36,12 @@ jobs:
         - validate:
             os: 'AmazonLinux'
 
-      testMakefileMacOS:
-        steps:
-          - validate:
-              os: 'macOS'
+  testMakefileMacOS:
+       macos:
+         xcode: 12.5.1
+       steps:
+        - validate:
+            os: 'macOS'
 
 workflows:
   testMakefileWorkflow:
