@@ -9,7 +9,7 @@ orbs:
 # Describes reusable commands
 commands:
   # Validate Makefile work building Test AWS CDK Java application.
-  validateWith:
+  validate:
     parameters:
       os: # Unused parameter
         default: "unknown"
@@ -30,7 +30,7 @@ jobs:
     docker:
       - image: cimg/node:16.3.0
     steps:
-      - validateWith:
+      - validate:
           os: 'Debian'
 
   # Describes job steps to execute Makefile validation with Amazon Linux.
@@ -41,7 +41,7 @@ jobs:
         - run: 'yum -y install make sudo git'
         - run: 'curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -'
         - run: 'yum install -y nodejs'
-        - validateWith:
+        - validate:
             os: 'AmazonLinux'
 
   # Describes job steps to execute Makefile validation with macOS.
@@ -49,7 +49,7 @@ jobs:
        macos:
          xcode: 12.5.1
        steps:
-        - validateWith:
+        - validate:
             os: 'macOS'
 
 # A workflow is a set of rules for defining a collection of jobs and their run order.
