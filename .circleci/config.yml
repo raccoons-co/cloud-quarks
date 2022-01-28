@@ -55,15 +55,17 @@ jobs:
 
 # A workflow is a set of rules for defining a collection of jobs and their run order.
 workflows:
-  testAwsCdkWorkflow:
-    jobs:
-      - shellcheck/check:
-          dir: ./aws-cdk
-      - testMakefileDebian
-      - testMakefileAmazonLinux
-      #- testMakefileMacOs
-  testAwsScpWorkflow:
+  validateAll:
     jobs:
       - github-super-linter/lint:
           scan-dir: ./
           version: v4
+
+  validateAwsCdk:
+    jobs:
+      #- shellcheck/check:
+      #    dir: ./aws-cdk
+      - testMakefileDebian
+      - testMakefileAmazonLinux
+      #- testMakefileMacOs
+
