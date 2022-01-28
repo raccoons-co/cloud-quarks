@@ -5,6 +5,7 @@ version: 2.1
 orbs:
   shellcheck: circleci/shellcheck@2.2.4
   macos: circleci/macos@2.0.1
+  github-super-linter: circleci/github-super-linter@1.0.0
 
 # Describes reusable commands
 commands:
@@ -54,10 +55,14 @@ jobs:
 
 # A workflow is a set of rules for defining a collection of jobs and their run order.
 workflows:
-  testMakefileWorkflow:
+  testAwsCdkWorkflow:
     jobs:
       - shellcheck/check:
           dir: ./aws-cdk
       - testMakefileDebian
       - testMakefileAmazonLinux
       #- testMakefileMacOs
+  testAwsScpWorkflow:
+    jobs:
+      - github-super-linter/lint:
+          scan-dir: aws-scp
