@@ -5,16 +5,16 @@
 - All AWS CDK applications require Node.js 10.13 or later
 
 ### Simply run
-````
+````sh
 curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
 ````
-````
+````sh
 make aws-cdk
 ````
-````
+````sh
 make init-cdk-app project=<NAME>
 ````
-````
+````sh
 cd <NAME>
 git remote add origin https://github.com/<ACCOUNT>/<NAME>.git
 git branch -M main
