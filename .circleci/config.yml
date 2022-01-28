@@ -65,6 +65,5 @@ workflows:
   testAwsScpWorkflow:
     jobs:
       - github-super-linter/lint:
-          context: Super-Linter-Options
           scan-dir: aws-scp
           version: v4
