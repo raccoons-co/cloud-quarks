@@ -1,11 +1,11 @@
-## Welcome to AWS CDK Java applications world! 
+# Welcome to AWS CDK Java applications world
 
 ### Prerequisites of your environment
 - Debian GNU/Linux, Amazon Linux or macOS
 - All AWS CDK applications require Node.js 10.13 or later
 
 ### Simply run
-```` 
+````
 curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
 ````
 ````
