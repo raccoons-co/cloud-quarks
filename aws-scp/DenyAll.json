@@ -4,9 +4,7 @@
         {
             "Sid": "DenyAll",
             "Effect": "Deny",
-            "Action": [
-                "*"
-            ],
+            "Action": "*",
             "Resource": "*"
         }
     ]
