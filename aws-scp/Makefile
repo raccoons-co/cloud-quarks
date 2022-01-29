@@ -30,10 +30,6 @@ list: ## Lists all available AWS service control policies
 show: policyOptionRequired ## Shows specified AWS service control policy
 	@ curl -fsSL $(CLOUD_QUARK)/$(policy).json
 
-test: ## this is test
-	@ echo "Доброе утро милая"
-
-
 .PHONY: create
 create: policyOptionRequired ## Creates a service control policy in your AWS environment
 	aws organizations create-policy \
