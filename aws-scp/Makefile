@@ -5,11 +5,11 @@
 # Describes AWS SCP cloud quark repository URL
 CLOUD_QUARK=https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp
 
-# Sets default AWS profile if it’s not already set.
-profile ?= default
-
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
+
+# Using 'sh -c' can avoid situation then VCS do not preserves file permissions
+sh_c := sh -c
 
 .PHONY: help
 help: ## Print this help
@@ -33,8 +33,7 @@ show: policyOptionRequired ## Shows specified AWS service control policy
 .PHONY: create
 create: policyOptionRequired ## Creates a service control policy in your AWS environment
 	aws organizations create-policy \
-                 --content $(CLOUD_QUARK)/$(policy).json \
+                 --content file://.cloud-quark/aws-scp/$(policy) \
                  --description $(policy) \
                  --name $(policy) \
                  --type SERVICE_CONTROL_POLICY \
-                 --profile $(profile)
