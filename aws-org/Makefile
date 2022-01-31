@@ -14,19 +14,23 @@ sh_c := sh -c
 
 .PHONY: help
 help: ## Print this help
-	@ echo "Usage: make <command> [root=<aws_org_id>]"
+	@ echo "Usage: make <command> [parentId=<aws_org_id>]"
 	@ echo "Commands:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
-# Checks is specifying policy option is strictly required.
-.PHONY: rootOptionRequired
-rootOptionRequired:
-	@ [ $(root) ] || ( make help; exit 1 )
+# Checks is specifying policy parentId option is strictly required.
+.PHONY: parentIdOptionRequired
+parentIdOptionRequired:
+	@ [ $(parentId) ] || ( make help; exit 1 )
 
 define createOU
 	aws organizations create-organizational-unit --parent-id $(root) --name $(1)
 endef
 
+.PHONY: getRoot
+getRoot:
+	@ aws organizations list-roots | grep -o '"Id": "[^"]*' | grep -o '[^"]*$'
+
 .PHONY: suspended
-suspended: rootOptionRequired ## Lists all available AWS service control policies
-	@ call createOU,"Suspended"
+suspended: parentIdOptionRequired ## Lists all available AWS service control policies
+	@ $(call createOU,"Suspended")
