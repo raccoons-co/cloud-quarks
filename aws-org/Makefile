@@ -28,7 +28,7 @@ define createOU
 endef
 
 .PHONY: getRoot
-getRoot:
+getRoot: ## Returns the identity of the root
 	@ aws organizations list-roots | grep -o '"Id": "[^"]*' | grep -o '[^"]*$'
 
 .PHONY: suspended
