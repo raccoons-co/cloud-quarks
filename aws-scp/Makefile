@@ -1,5 +1,5 @@
 # This wrapper automates setup of AWS SCP cloud quarks.
-# Simply install with
+# Simply install at AWS CloudShell
 #   curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/Makefile --output Makefile
 
 # Describes AWS SCP cloud quark repository URL
