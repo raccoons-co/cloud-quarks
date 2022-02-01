@@ -24,17 +24,7 @@ endef
 getRoot: ## Returns the identity of the root
 	@ aws organizations list-roots
 
-.PHONY: sandbox
-sandbox: parentIdOptionRequired ## Creates 'Sandbox' OU
-	@ $(call createOU,Sandbox)
-
-.PHONY: workloads
-workloads: parentIdOptionRequired ## Creates 'Workloads' OU
-	@ $(call createOU,Workloads)
-
-.PHONY: suspended
-suspended: parentIdOptionRequired ## Creates 'Suspended' OU
-	@ $(call createOU,Suspended)
-
-.PHONY: all
-all: sandbox workloads suspended ## Creates all OUs
+AWS_ORG_UNITS = Suspended Sandbox
+.PHONY: parentIdOptionRequiredall
+all: ## Creates all OUs
+	$(foreach ou, $(AWS_ORG_UNITS), $(call createOU,$(ou);))
