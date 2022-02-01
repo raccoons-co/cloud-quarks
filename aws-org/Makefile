@@ -15,6 +15,10 @@ define createAll
 	$(foreach ou, $(1), $(call newOrgUnit,$(ou);))
 endef
 
+define getRootId
+	aws organizations list-roots
+endef
+
 .PHONY: help
 help: ## Print this help
 	@ echo "Usage: make <command> [parentId=<aws_org_id>] [name=<aws_ou_name>]"
@@ -30,9 +34,10 @@ parentIdOptionRequired:
 nameOptionRequired:
 	@ [ $(name) ] || ( make help; exit 1 )
 
-.PHONY: getRoot
-getRoot: ## Returns the identity of the root
-	@ aws organizations list-roots
+.PHONY: rootId
+rootId: ## Returns the identity of the root
+rootId: id = $(call getRootId)
+	@ echo $(id)
 
 .PHONY: foundational
 foundational: ## Creates foundational OUs: Security and Infrastructure
@@ -40,12 +45,14 @@ foundational: AWS_ORG_UNITS = Security Infrastructure
 foundational: parentIdOptionRequired
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
+# Issue: OU name with spaces is unavailable yet. Use make new for this purpose.
 .PHONY: additional
 additional: ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
 additional: AWS_ORG_UNITS = Sandbox Workloads PolicyStaging Deployments Suspended
 additional: parentIdOptionRequired
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
+# Use single quotes and escaping spaces 'Policy\ Staging' .
 .PHONY: new
 new: ## Creates a new OU specified with 'name' under 'parentId' OU
 new: parentIdOptionRequired nameOptionRequired
