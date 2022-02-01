@@ -1,8 +1,10 @@
 # AWS-ORG cloud quark
 is aws commands wrapper that automates creation of AWS Organizational Units.
 
-Implements https://aws.amazon.com/blogs/mt/best-practices-for-organizational-units-with-aws-organizations/
-
+Implements
+````html
+https://aws.amazon.com/blogs/mt/best-practices-for-organizational-units-with-aws-organizations/
+````
 Simply install at AWS CloudShell
 ````shell
 curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
