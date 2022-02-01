@@ -12,7 +12,7 @@ endef
 
 # Creates OUs provided as list
 define createAll
-	$(foreach ou, $(1), $(call newOrgUnit,$(ou),$(2)))
+	$(foreach ou, $(1), $(call newOrgUnit,$(ou),$(2));)
 endef
 
 define getRootId
