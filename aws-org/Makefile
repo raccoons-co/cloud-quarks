@@ -29,8 +29,19 @@ endef
 
 .PHONY: getRoot
 getRoot: ## Returns the identity of the root
-	@ aws organizations list-roots | grep -o '"Id": "[^"]*' | grep -o '[^"]*$'
+	@ aws organizations list-roots
+
+.PHONY: sandbox
+suspended: parentIdOptionRequired ## Creates 'Sandbox' OU
+	@ $(call createOU,Sandbox)
+
+.PHONY: workloads
+suspended: parentIdOptionRequired ## Creates 'Workloads' OU
+	@ $(call createOU,Workloads)
 
 .PHONY: suspended
-suspended: parentIdOptionRequired ## Lists all available AWS service control policies
-	@ $(call createOU,"Suspended")
+suspended: parentIdOptionRequired ## Creates 'Suspended' OU
+	@ $(call createOU,Suspended)
+
+.PHONY: all
+all: sandbox suspended ## Creates all OUs
