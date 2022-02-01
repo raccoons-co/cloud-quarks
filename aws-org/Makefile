@@ -31,15 +31,16 @@ endef
 .PHONY: help
 help: ## Print this help
 	@ echo "AWS-ORG cloud quark automates creation of AWS Organizational Units."
-	@ echo "Usage: make <target> [parentId=<aws_org_id>] [name=<aws_ou_name>]"
+	@ echo "Usage: make <target> [parentId=<aws_ou_id>] [name=<aws_ou_name>]"
 	@ echo "Targets:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
-# Checks is specifying policy parentId option is strictly required.
+# Requires specifying parentId option to make a target.
 .PHONY: parentIdOptionRequired
 parentIdOptionRequired:
 	@ [ $(parentId) ] || ( make help; exit 1 )
 
+# Requires specifying name option to make a target.
 .PHONY: nameOptionRequired
 nameOptionRequired:
 	@ [ $(name) ] || ( make help; exit 1 )
