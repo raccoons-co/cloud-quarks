@@ -12,7 +12,7 @@ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-o
 ```shell
 % make help              
 AWS-ORG cloud quark automates creation of AWS Organizational Units.
-Usage: make <target> [parentId=<aws_org_id>] [name=<aws_ou_name>]
+Usage: make <target> [parentId=<aws_ou_id>] [name=<aws_ou_name>]
 Targets:
 all              Creates Security, Infrastructure, Sandbox, Workloads, PolicyStaging, Deployments, Suspended OUs
 help             Print this help
