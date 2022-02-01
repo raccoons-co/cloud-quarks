@@ -35,20 +35,20 @@ getRoot: ## Returns the identity of the root
 	@ aws organizations list-roots
 
 .PHONY: foundational
+foundational: ## Creates foundational OUs: Security and Infrastructure
 foundational: AWS_ORG_UNITS = Security Infrastructure
 foundational: parentIdOptionRequired
-foundational: ## Creates foundational OUs: Security and Infrastructure
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: additional
+additional: ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
 additional: AWS_ORG_UNITS = Sandbox Workloads PolicyStaging Deployments Suspended
 additional: parentIdOptionRequired
-additional: ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: new
-new: parentIdOptionRequired nameOptionRequired
 new: ## Creates a new OU specified with 'name' under 'parentId' OU
+new: parentIdOptionRequired nameOptionRequired
 	@ $(call newOrgUnit,$(name);)
 
 .PHONY: all
