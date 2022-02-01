@@ -2,15 +2,8 @@
 # Simply install at AWS CloudShell
 #   curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
 
-# Describes AWS ORG cloud quark repository URL
-CLOUD_QUARK=https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-sorg
-
-
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
-
-# Using 'sh -c' can avoid situation then VCS do not preserves file permissions
-sh_c := sh -c
 
 .PHONY: help
 help: ## Print this help
@@ -44,4 +37,4 @@ suspended: parentIdOptionRequired ## Creates 'Suspended' OU
 	@ $(call createOU,Suspended)
 
 .PHONY: all
-all: sandbox suspended ## Creates all OUs
+all: sandbox workloads suspended ## Creates all OUs
