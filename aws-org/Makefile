@@ -41,4 +41,4 @@ foundational: parentIdOptionRequired ## Creates foundational OUs: Security and I
 
 .PHONY: new
 new: parentIdOptionRequired nameOptionRequired ## Creates a new OU specified with 'name' under 'parentId' OU
-	@ $(call newOrgUnit,$(ou);)
+	@ $(call newOrgUnit,$(name);)
