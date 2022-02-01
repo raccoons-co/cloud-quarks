@@ -8,7 +8,7 @@ Simply install at AWS CloudShell
 curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
 ````
 ```shell
-% make                
+% make help              
 AWS-ORG cloud quark automates creation of AWS Organizational Units.
 Usage: make <target> [parentId=<aws_org_id>] [name=<aws_ou_name>]
 Targets:
