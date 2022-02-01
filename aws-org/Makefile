@@ -36,9 +36,8 @@ nameOptionRequired:
 
 .PHONY: rootId
 rootId: ## Returns the identity of the root
-rootId: id = $(call getRootId)
 rootId:
-		@ eval $(id)
+		@ $(call getRootId)
 
 .PHONY: foundational
 foundational: ## Creates foundational OUs: Security and Infrastructure
