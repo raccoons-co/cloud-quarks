@@ -16,7 +16,7 @@ define createAll
 endef
 
 define getRootId
-	aws organizations list-roots
+	aws organizations list-roots | grep -o '"Id": "[^"]*' | cut -d\" -f 4
 endef
 
 .PHONY: help
