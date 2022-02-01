@@ -5,6 +5,16 @@
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
+# Creates a new OU
+define newOrgUnit
+	aws organizations create-organizational-unit --parent-id $(parentId) --name $(1)
+endef
+
+# Creates OUs provided as list
+define createAll
+	$(foreach ou, $(1), $(call newOrgUnit,$(ou);))
+endef
+
 .PHONY: help
 help: ## Print this help
 	@ echo "Usage: make <command> [parentId=<aws_org_id>]"
@@ -16,10 +26,6 @@ help: ## Print this help
 parentIdOptionRequired:
 	@ [ $(parentId) ] || ( make help; exit 1 )
 
-define createOU
-	aws organizations create-organizational-unit --parent-id $(parentId) --name $(1)
-endef
-
 .PHONY: getRoot
 getRoot: ## Returns the identity of the root
 	@ aws organizations list-roots
@@ -27,12 +33,12 @@ getRoot: ## Returns the identity of the root
 .PHONY: foundational
 foundational: AWS_ORG_UNITS = Security Infrastructure
 foundational: parentIdOptionRequired ## Creates foundational OUs
-	@ $(foreach ou, $(AWS_ORG_UNITS), $(call createOU,$(ou);))
+	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: additional
 additional: AWS_ORG_UNITS = Sandbox Workloads Deployments Suspended
 additional: parentIdOptionRequired ## Creates additional OUs
-	@ $(foreach ou, $(AWS_ORG_UNITS), $(call createOU,$(ou);))
+	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: all
-all: foundational additional
+all: foundational additional ## Creates foundational and additional OUs
