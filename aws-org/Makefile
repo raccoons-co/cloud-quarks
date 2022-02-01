@@ -12,7 +12,7 @@ endef
 
 # Creates OUs provided as list
 define createAll
-	$(foreach ou, $(1), $(call newOrgUnit,$(ou);))
+	$(foreach ou, '$(1)', $(call newOrgUnit,$(ou);))
 endef
 
 .PHONY: help
@@ -40,8 +40,8 @@ foundational: parentIdOptionRequired ## Creates foundational OUs: Security and I
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: additional
-additional: AWS_ORG_UNITS = Sandbox Workloads 'Policy\ Staging' Deployments Suspended
-additional: parentIdOptionRequired ## Creates additional OUs
+additional: AWS_ORG_UNITS = Sandbox Workloads PolicyStaging Deployments Suspended
+additional: parentIdOptionRequired ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: new
