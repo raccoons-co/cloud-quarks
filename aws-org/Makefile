@@ -2,9 +2,6 @@
 # Simply install at AWS CloudShell
 #   curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
 
-FOUNDATIONAL_ORG_UNITS = Security Infrastructure
-ADDITIONAL_ORG_UNITS = Sandbox Workloads 'Policy Staging' Suspended Deployments
-
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
@@ -28,12 +25,14 @@ getRoot: ## Returns the identity of the root
 	@ aws organizations list-roots
 
 .PHONY: foundational
+foundational: AWS_ORG_UNITS = Security Infrastructure
 foundational: parentIdOptionRequired ## Creates foundational OUs
-	@ $(foreach ou, $(FOUNDATIONAL_ORG_UNITS), $(call createOU,$(ou);))
+	@ $(foreach ou, $(AWS_ORG_UNITS), $(call createOU,$(ou);))
 
 .PHONY: additional
+additional: AWS_ORG_UNITS = Sandbox Workloads Deployments Suspended
 additional: parentIdOptionRequired ## Creates additional OUs
-	@ $(foreach ou, $(ADDITIONAL_ORG_UNITS), $(call createOU,$(ou);))
+	@ $(foreach ou, $(AWS_ORG_UNITS), $(call createOU,$(ou);))
 
 .PHONY: all
 all: foundational additional
