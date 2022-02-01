@@ -25,6 +25,6 @@ getRoot: ## Returns the identity of the root
 	@ aws organizations list-roots
 
 AWS_ORG_UNITS = Suspended Sandbox
-.PHONY: parentIdOptionRequiredall
-all: ## Creates all OUs
+.PHONY: all
+all: parentIdOptionRequired ## Creates all OUs
 	$(foreach ou, $(AWS_ORG_UNITS), $(call createOU,$(ou);))
