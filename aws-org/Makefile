@@ -17,7 +17,7 @@ endef
 
 .PHONY: help
 help: ## Print this help
-	@ echo "Usage: make <command> [parentId=<aws_org_id>]"
+	@ echo "Usage: make <command> [parentId=<aws_org_id>] [name=<aws_ou_name>]"
 	@ echo "Commands:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
@@ -25,6 +25,10 @@ help: ## Print this help
 .PHONY: parentIdOptionRequired
 parentIdOptionRequired:
 	@ [ $(parentId) ] || ( make help; exit 1 )
+
+.PHONY: nameOptionRequired
+nameOptionRequired:
+	@ [ $(name) ] || ( make help; exit 1 )
 
 .PHONY: getRoot
 getRoot: ## Returns the identity of the root
@@ -35,10 +39,6 @@ foundational: AWS_ORG_UNITS = Security Infrastructure
 foundational: parentIdOptionRequired ## Creates foundational OUs
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
-.PHONY: additional
-additional: AWS_ORG_UNITS = Sandbox Workloads Deployments Suspended
-additional: parentIdOptionRequired ## Creates additional OUs
-	@ $(call createAll,$(AWS_ORG_UNITS))
-
-.PHONY: all
-all: foundational additional ## Creates foundational and additional OUs
+.PHONY: new
+new: parentIdOptionRequired nameOptionRequired ## Creates a new OU specified with 'name' under 'parentId' OU
+	@ $(call newOrgUnit,$(ou);)
