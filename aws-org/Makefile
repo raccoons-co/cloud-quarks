@@ -44,7 +44,7 @@ foundational: ## Creates foundational OUs: Security and Infrastructure
 additional: AWS_ORG_UNITS = Sandbox Workloads PolicyStaging Deployments Suspended
 additional: parentIdOptionRequired
 additional: ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
-	$(call createAll,$(AWS_ORG_UNITS))
+	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: new
 new: parentIdOptionRequired nameOptionRequired
@@ -52,4 +52,5 @@ new: ## Creates a new OU specified with 'name' under 'parentId' OU
 	@ $(call newOrgUnit,$(name);)
 
 .PHONY: all
+all: parentIdOptionRequired
 all: foundational additional
