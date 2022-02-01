@@ -36,7 +36,7 @@ getRoot: ## Returns the identity of the root
 
 .PHONY: foundational
 foundational: AWS_ORG_UNITS = Security Infrastructure
-foundational: parentIdOptionRequired ## Creates foundational OUs
+foundational: parentIdOptionRequired ## Creates foundational OUs: Security and Infrastructure
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: new
