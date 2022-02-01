@@ -13,7 +13,7 @@ sh_c := sh -c
 
 .PHONY: help
 help: ## Print this help
-	@ echo "Usage: make <command> [policy=<scp_name>] [profile=<aws_profile>]"
+	@ echo "Usage: make <command> [policy=<scp_name>]"
 	@ echo "Commands:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
@@ -36,4 +36,4 @@ create: policyOptionRequired ## Creates a service control policy in your AWS env
                  --content file://.cloud-quark/aws-scp/$(policy) \
                  --description $(policy) \
                  --name $(policy) \
-                 --type SERVICE_CONTROL_POLICY \
+                 --type SERVICE_CONTROL_POLICY
