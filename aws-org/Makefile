@@ -7,7 +7,7 @@
 
 # Creates a new OU
 define newOrgUnit
-	aws organizations create-organizational-unit --parent-id $(2) --name $(1)
+	aws organizations create-organizational-unit --name $(1) --parent-id $(2)
 endef
 
 # Creates OUs provided as list
@@ -42,21 +42,21 @@ rootId:
 .PHONY: foundational
 foundational: ## Creates foundational OUs: Security and Infrastructure
 foundational: AWS_ORG_UNITS = Security Infrastructure
-foundational:
-	@ $(call createAll,$(AWS_ORG_UNITS), $(call getRootId))
+foundational: parentIdOptionRequired
+	@ $(call createAll,$(AWS_ORG_UNITS),$(parentId))
 
 # Issue: OU name with spaces is unavailable yet. Use make new for this purpose.
 .PHONY: additional
 additional: ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
 additional: AWS_ORG_UNITS = Sandbox Workloads PolicyStaging Deployments Suspended
 additional: parentIdOptionRequired
-	@ $(call createAll,$(AWS_ORG_UNITS))
+	@ $(call createAll,$(AWS_ORG_UNITS),$(parentId))
 
 # Use single quotes and escaping spaces 'Policy\ Staging' .
 .PHONY: new
 new: ## Creates a new OU specified with 'name' under 'parentId' OU
 new: parentIdOptionRequired nameOptionRequired
-	@ $(call newOrgUnit,$(name))
+	@ $(call newOrgUnit,$(name),$(parentId))
 
 .PHONY: all
 all: parentIdOptionRequired
