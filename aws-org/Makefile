@@ -17,7 +17,7 @@ parentIdOptionRequired:
 	@ [ $(parentId) ] || ( make help; exit 1 )
 
 define createOU
-	aws organizations create-organizational-unit --parent-id $(root) --name $(1)
+	aws organizations create-organizational-unit --parent-id $(parentId) --name $(1)
 endef
 
 .PHONY: getRoot
