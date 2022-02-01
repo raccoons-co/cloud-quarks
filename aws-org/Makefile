@@ -12,7 +12,7 @@ endef
 
 # Creates OUs provided as list
 define createAll
-	$(foreach ou, '$(1)', $(call newOrgUnit,$(ou);))
+	$(foreach ou, $(1), $(call newOrgUnit,$(ou);))
 endef
 
 .PHONY: help
@@ -36,14 +36,20 @@ getRoot: ## Returns the identity of the root
 
 .PHONY: foundational
 foundational: AWS_ORG_UNITS = Security Infrastructure
-foundational: parentIdOptionRequired ## Creates foundational OUs: Security and Infrastructure
+foundational: parentIdOptionRequired
+foundational: ## Creates foundational OUs: Security and Infrastructure
 	@ $(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: additional
 additional: AWS_ORG_UNITS = Sandbox Workloads PolicyStaging Deployments Suspended
-additional: parentIdOptionRequired ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
-	@ $(call createAll,$(AWS_ORG_UNITS))
+additional: parentIdOptionRequired
+additional: ## Creates additional OUs: Sandbox, Workloads, PolicyStaging, Deployments, Suspended
+	$(call createAll,$(AWS_ORG_UNITS))
 
 .PHONY: new
-new: parentIdOptionRequired nameOptionRequired ## Creates a new OU specified with 'name' under 'parentId' OU
+new: parentIdOptionRequired nameOptionRequired
+new: ## Creates a new OU specified with 'name' under 'parentId' OU
 	@ $(call newOrgUnit,$(name);)
+
+.PHONY: all
+all: foundational additional
