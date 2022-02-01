@@ -1,20 +1,27 @@
-# This wrapper automates setup of AWS ORG cloud quarks.
+# AWS-ORG cloud quark is aws commands wrapper that automates creation of AWS Organizational Units.
+# Implements
+# https://aws.amazon.com/blogs/mt/best-practices-for-organizational-units-with-aws-organizations/
+#
 # Simply install at AWS CloudShell
-#   curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
+# 	curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
+#
+# 	make rootId | xargs -I{} make all parentId={}
 
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
-# Creates a new OU
+# $(call newOrgUnit,$(name),$(parentId)) - Creates a new OU specified with name under parent OU id
 define newOrgUnit
 	aws organizations create-organizational-unit --name $(1) --parent-id $(2)
 endef
 
-# Creates OUs provided as list
+# $(call createAll,$(AWS_ORG_UNITS),$(parentId)) - Creates OUs specified as list of names
 define createAll
 	$(foreach ou, $(1), $(call newOrgUnit,$(ou),$(2));)
 endef
 
+# $(call getRootId) - Returns root Id of current AWS organisation
+# Issue: Unknown effect if multiple roots
 define getRootId
 	aws organizations list-roots | grep -o '"Id": "[^"]*' | cut -d\" -f 4
 endef
@@ -59,5 +66,6 @@ new: parentIdOptionRequired nameOptionRequired
 	@ $(call newOrgUnit,$(name),$(parentId))
 
 .PHONY: all
+all: ## Creates foundational and additional OUs
 all: parentIdOptionRequired
 all: foundational additional
