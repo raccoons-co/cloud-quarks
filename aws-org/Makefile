@@ -32,11 +32,11 @@ getRoot: ## Returns the identity of the root
 	@ aws organizations list-roots
 
 .PHONY: sandbox
-suspended: parentIdOptionRequired ## Creates 'Sandbox' OU
+sandbox: parentIdOptionRequired ## Creates 'Sandbox' OU
 	@ $(call createOU,Sandbox)
 
 .PHONY: workloads
-suspended: parentIdOptionRequired ## Creates 'Workloads' OU
+workloads: parentIdOptionRequired ## Creates 'Workloads' OU
 	@ $(call createOU,Workloads)
 
 .PHONY: suspended
