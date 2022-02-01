@@ -4,7 +4,9 @@
 #
 # Simply install at AWS CloudShell
 # 	curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
+#   make help
 #
+#	Edit AWS_ORG_UNITS and
 # 	make rootId | xargs -I{} make all parentId={}
 
 # Sets default target to handle make execution with no arguments
@@ -28,6 +30,7 @@ endef
 
 .PHONY: help
 help: ## Print this help
+	@ echo "AWS-ORG cloud quark automates creation of AWS Organizational Units."
 	@ echo "Usage: make <command> [parentId=<aws_org_id>] [name=<aws_ou_name>]"
 	@ echo "Commands:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -59,9 +62,9 @@ additional: AWS_ORG_UNITS = Sandbox Workloads PolicyStaging Deployments Suspende
 additional: parentIdOptionRequired
 	@ $(call createAll,$(AWS_ORG_UNITS),$(parentId))
 
-# Use single quotes and escaping spaces 'Policy\ Staging' .
+# Use single quotes and escaping spaces to allow spaces i.e. 'Policy\ Staging'
 .PHONY: new
-new: ## Creates a new OU specified with 'name' under 'parentId' OU
+new: ## Creates a new OU with 'name' and 'parentId'
 new: parentIdOptionRequired nameOptionRequired
 	@ $(call newOrgUnit,$(name),$(parentId))
 
