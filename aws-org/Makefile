@@ -3,7 +3,7 @@
 # https://aws.amazon.com/blogs/mt/best-practices-for-organizational-units-with-aws-organizations/
 #
 # Simply install at AWS CloudShell
-# 	curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
+#   curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile --output Makefile
 #   make help
 #
 # Edit AWS_ORG_UNITS and
