@@ -23,11 +23,6 @@ define newOrgUnit
 	aws organizations create-organizational-unit --name $(1) --parent-id $(2)
 endef
 
-# $(call createAll,$(AWS_ORG_UNITS),$(parentId)) - Creates OUs specified as list of names
-define createAll
-	$(foreach ou, $(1), $(call newOrgUnit,$(ou),$(2));)
-endef
-
 .PHONY: help
 help: ## Print this help
 	@ echo "AWS-ORG cloud quark automates creation of AWS Organizational Units."
@@ -60,4 +55,4 @@ new: parentIdOptionRequired nameOptionRequired
 all: ## Creates Security, Infrastructure, Sandbox, Workloads, PolicyStaging, Deployments, Suspended OUs
 all: AWS_ORG_UNITS = Security Infrastructure Sandbox Workloads PolicyStaging Deployments Suspended
 all: parentIdOptionRequired
-	@ $(call createAll,$(AWS_ORG_UNITS),$(parentId))
+	@ $(foreach ou, $(AWS_ORG_UNITS), $(call newOrgUnit,$(ou),$(parentId));)
