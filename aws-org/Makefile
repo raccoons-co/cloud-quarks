@@ -7,7 +7,7 @@
 #   make help
 #
 # Edit AWS_ORG_UNITS and
-# 	make rootId | xargs -I{} make all parentId={}
+#   make rootId | xargs -I{} make all parentId={}
 
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
