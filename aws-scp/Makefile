@@ -4,8 +4,8 @@
 # Simply install at AWS CloudShell
 # curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/Makefile --output Makefile
 
-# Describes AWS SCP cloud quark repository URL
-CLOUD_QUARK=https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp
+# Sets default target to handle make execution with no arguments
+.DEFAULT_GOAL := help
 
 # $(call createPolicy,$(policy))
 define createPolicy
@@ -16,8 +16,10 @@ define createPolicy
                  --content file://.cloud-quark/aws-scp/$(1)
 endef
 
-# Sets default target to handle make execution with no arguments
-.DEFAULT_GOAL := help
+# $(call httpGet,$(page))
+define httpGet
+	curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/$(1)
+endef
 
 .PHONY: help
 help: ## Print this help
@@ -32,11 +34,11 @@ policyOptionRequired:
 
 .PHONY: list
 list: ## Lists all available AWS service control policies
-	@ curl -fsSL $(CLOUD_QUARK)/list
+	@ $(call httpGet,list)
 
 .PHONY: show
 show: policyOptionRequired ## Shows specified AWS service control policy
-	@ curl -fsSL $(CLOUD_QUARK)/$(policy).json
+	@ $(call httpGet,$(policy).json)
 
 .PHONY: create
 create: policyOptionRequired ## Creates a service control policy in your AWS environment
