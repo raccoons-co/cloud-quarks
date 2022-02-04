@@ -59,4 +59,4 @@ show: http.get($(policy).json) ## Shows specified AWS service control policy
 
 .PHONY: deploy
 deploy: requiresOptionPolicy
-deploy: AWSSCP.new($(policy)) ## Deploys new AWS service control policy
+deploy: AWSSCP.new($(policy)) ## Deploys a new AWS service control policy
