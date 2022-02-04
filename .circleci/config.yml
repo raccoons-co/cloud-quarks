@@ -61,7 +61,7 @@ workflows:
           scan-dir: ./
           version: v4
 
-  validateAwsCdk:
+  validate_CQ_AWSCDK:
     jobs:
       #- shellcheck/check:
       #    dir: ./aws-cdk
