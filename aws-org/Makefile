@@ -23,7 +23,7 @@ endef
 
 # $(call newOrgUnit,$(name),$(parentId)) - Creates a new OU specified with name under parent OU id
 define newOrgUnit
-	aws organizations create-organizational-unit --name $(1) --parent-id $(2)
+	@ aws organizations create-organizational-unit --name $(1) --parent-id $(2)
 endef
 
 .PHONY: help
