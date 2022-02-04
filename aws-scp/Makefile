@@ -41,8 +41,8 @@ CQ_AWSSCP/%: $(CQ_HOME_DIR)/%.json
 .PHONY: help
 help: ## Print this help
 	@ echo "AWS-SCP cloud quark automates deployment of common AWS Service Control Policies."
-	@ echo "Usage: make <command> [policy=<aws_scp_name>]"
-	@ echo "Commands:"
+	@ echo "Usage: make <target> [policy=<aws_scp_name>]"
+	@ echo "Targets:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
 # Checks is specifying policy option is strictly required.

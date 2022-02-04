@@ -8,8 +8,8 @@ curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-s
 ```shell
 make help
 AWS-SCP cloud quark automates deployment of common AWS Service Control Policies.
-Usage: make <command> [policy=<scp_name>]
-Commands:
+Usage: make <target> [policy=<scp_name>]
+Targets:
 deploy           Deploys AWS service control policy
 help             Print this help
 list             Lists all available AWS service control policies
