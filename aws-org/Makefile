@@ -18,7 +18,7 @@
 # $(call getRootId) - Returns root Id of current AWS organisation
 # Issue: Unknown effect if multiple roots
 define getRootId
-	aws organizations list-roots | grep -o '"Id": "[^"]*' | cut -d\" -f 4
+	@ aws organizations list-roots | grep -o '"Id": "[^"]*' | cut -d\" -f 4
 endef
 
 # $(call newOrgUnit,$(name),$(parentId)) - Creates a new OU specified with name under parent OU id
