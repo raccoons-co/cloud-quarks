@@ -25,13 +25,13 @@ $(CQ_HOME_DIR):
 	@ [ -d $@ ] || mkdir -p $@
 
 # Creates policy JSON file under CQ_HOME_DIR
-$(CQ_HOME_DIR)/%.json: $(CQ_HOME_DIR)
+$(CQ_HOME_DIR)/%.json: $(CQ_HOME_DIR) # Depends on home directory
 	@ curl -fsSL $(CQ_BASE_URL)/$(@F) \
 		--output $@
 
 # Creates AWS SCP in your AWS organization
 .PHONY: AWSSCP.new(%)
-AWSSCP.new(%): $(CQ_HOME_DIR)/%.json
+AWSSCP.new(%): $(CQ_HOME_DIR)/%.json # Depends on downloaded SCP JSON file
 	aws organizations create-policy \
 		--type SERVICE_CONTROL_POLICY \
 		--name $% \
