@@ -16,9 +16,9 @@ CQ_HOME_DIR = ~/.cloud-quark/aws-scp
 .DEFAULT_GOAL := help
 
 # Transfers cloud quark from remote
-.PHONY: CQ_CURL/%
-CQ_CURL/%:
-	@ curl -fsSL $(CQ_BASE_URL)/$(@F)
+.PHONY: http.get(%)
+http.get(%):
+	curl -fsSL $(CQ_BASE_URL)/$%
 
 # Makes Cloud Quark home directory if not exists. Create intermediate directories as required.
 $(CQ_HOME_DIR):
@@ -30,12 +30,12 @@ $(CQ_HOME_DIR)/%.json: $(CQ_HOME_DIR)
 		--output $@
 
 # Creates AWS SCP in your AWS organization
-.PHONY: CQ_AWSSCP/%
-CQ_AWSSCP/%: $(CQ_HOME_DIR)/%.json
+.PHONY: AWSSCP.new(%)
+AWSSCP.new(%): $(CQ_HOME_DIR)/%.json
 	aws organizations create-policy \
 		--type SERVICE_CONTROL_POLICY \
-		--name $(@F) \
-		--description $(@F) \
+		--name $% \
+		--description $% \
 		--content file://$<
 
 .PHONY: help
@@ -51,12 +51,12 @@ requiresOptionPolicy:
 	@ [ $(policy) ] || ( make help; exit 1 )
 
 .PHONY: list
-list: CQ_CURL/list ## Lists all available AWS service control policies
+list: http.get(list) ## Lists all available AWS service control policies
 
 .PHONY: show
 show: requiresOptionPolicy
-show: CQ_CURL/$(policy).json ## Shows specified AWS service control policy
+show: http.get($(policy).json) ## Shows specified AWS service control policy
 
 .PHONY: deploy
 deploy: requiresOptionPolicy
-deploy: CQ_AWSSCP/$(policy) ## Deploys AWS service control policy
+deploy: AWSSCP.new($(policy)) ## Deploys new AWS service control policy
