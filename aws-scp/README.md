@@ -15,3 +15,7 @@ help             Print this help
 list             Lists all available AWS service control policies
 show             Shows specified AWS service control policy
 ````
+Deploy all
+````shell
+make list | xargs -I{} make deploy policy={}
+````
