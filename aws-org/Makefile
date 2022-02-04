@@ -51,6 +51,6 @@ new: requires.option(parentId)
 
 .PHONY: all
 all: ## Creates Security, Infrastructure, Sandbox, Workloads, PolicyStaging, Deployments, Suspended OUs
-all: AWSORG.UNITS = Security Infrastructure Sandbox Workloads PolicyStaging Deployments Suspended
+all: AWS_ORG_UNITS = Security Infrastructure Sandbox Workloads PolicyStaging Deployments Suspended
 all: requires.option(parentId)
-	$(foreach ou, $(AWSORG.UNITS), $(call AWSORG.newUnit,$(ou),$(parentId));)
+	$(foreach ou, $(AWS_ORG_UNITS), $(call AWSORG.newUnit,$(ou),$(parentId));)
