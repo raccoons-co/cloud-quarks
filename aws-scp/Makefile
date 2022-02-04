@@ -60,6 +60,3 @@ show: CQ_CURL/$(policy).json ## Shows specified AWS service control policy
 .PHONY: deploy
 deploy: requiresOptionPolicy
 deploy: CQ_AWSSCP/$(policy) ## Deploys AWS service control policy
-
-clean:
-	rm -rf $(CQ_HOME_DIR)
