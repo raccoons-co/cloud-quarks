@@ -47,7 +47,6 @@ rootId: ## Returns the identity of the root
 new: ## Creates a new OU with 'name' and 'parentId'
 new: requires.option(name)
 new: requires.option(parentId)
-new:
 	$(call AWSORG.newUnit,$(name),$(parentId))
 
 .PHONY: all
