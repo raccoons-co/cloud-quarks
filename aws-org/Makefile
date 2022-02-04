@@ -18,7 +18,7 @@
 # $(call AWSORG.getRootId) - Returns root Id of current AWS organisation
 # Issue: Unknown effect if multiple roots
 define AWSORG.getRootId
-	@ aws organizations list-roots | grep -o '"Id": "[^"]*' | cut -d\" -f 4
+	aws organizations list-roots | grep -o '"Id": "[^"]*' | cut -d\" -f 4
 endef
 
 # $(call AWSORG.newUnit,$(name),$(parentId)) - Creates a new OU specified with name under parent OU id
@@ -40,7 +40,7 @@ requires.option(%):
 
 .PHONY: rootId
 rootId: ## Returns the identity of the root
-	$(call AWSORG.getRootId)
+	@ $(call AWSORG.getRootId)
 
 # Use single quotes and escaping spaces to allow spaces i.e. 'Policy\ Staging'
 .PHONY: new
