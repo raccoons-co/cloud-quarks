@@ -18,7 +18,7 @@ CQ_HOME_DIR = ~/.cloud-quark/aws-scp
 # Transfers cloud quark from remote
 .PHONY: http.get(%)
 http.get(%):
-	@ curl -fsSL $(CQ_BASE_URL)/$%
+	@ curl -fsSL -H 'Cache-Control: no-cache' $(CQ_BASE_URL)/$%
 
 # Makes Cloud Quark home directory if not exists. Create intermediate directories as required.
 $(CQ_HOME_DIR):
@@ -26,7 +26,7 @@ $(CQ_HOME_DIR):
 
 # Creates policy JSON file under CQ_HOME_DIR
 $(CQ_HOME_DIR)/%.json: $(CQ_HOME_DIR) # Depends on home directory
-	@ curl -fsSL $(CQ_BASE_URL)/$(@F) \
+	@ curl -fsSL -H 'Cache-Control: no-cache' $(CQ_BASE_URL)/$(@F) \
 		--output $@
 
 # Creates AWS SCP in your AWS organization
