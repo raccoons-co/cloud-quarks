@@ -23,7 +23,7 @@ endef
 
 # $(call AWSORG.newUnit,$(name),$(parentId)) - Creates a new OU specified with name under parent OU id
 define AWSORG.newUnit
-	@ aws organizations create-organizational-unit --name $(1) --parent-id $(2)
+	aws organizations create-organizational-unit --name $(1) --parent-id $(2)
 endef
 
 .PHONY: help
@@ -51,6 +51,6 @@ new: requires.option(parentId)
 
 .PHONY: all
 all: ## Creates Security, Infrastructure, Sandbox, Workloads, PolicyStaging, Deployments, Suspended OUs
-all: AWS_ORG_UNITS = Security Infrastructure Sandbox Workloads PolicyStaging Deployments Suspended
+all: AWSORG.UNITS = Security Infrastructure Sandbox Workloads PolicyStaging Deployments Suspended
 all: requires.option(parentId)
-	$(foreach ou, $(AWS_ORG_UNITS), $(call AWSORG.newUnit,$(ou),$(parentId));)
+	$(foreach ou, $(AWSORG.UNITS), $(call AWSORG.newUnit,$(ou),$(parentId));)
