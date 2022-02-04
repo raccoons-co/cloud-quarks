@@ -34,28 +34,23 @@ help: ## Print this help
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
 # Requires specifying parentId option to make a target.
-.PHONY: parentIdOptionRequired
-parentIdOptionRequired:
-	@ [ $(parentId) ] || ( make help; exit 1 )
-
-# Requires specifying name option to make a target.
-.PHONY: nameOptionRequired
-nameOptionRequired:
-	@ [ $(name) ] || ( make help; exit 1 )
+.PHONY: requires.option(%)
+requires.option(%):
+	@ [ $($%) ] || ( make help; exit 1 )
 
 .PHONY: rootId
 rootId: ## Returns the identity of the root
-rootId:
-	@ $(call getRootId)
+	$(call getRootId)
 
 # Use single quotes and escaping spaces to allow spaces i.e. 'Policy\ Staging'
 .PHONY: new
 new: ## Creates a new OU with 'name' and 'parentId'
-new: parentIdOptionRequired nameOptionRequired
-	@ $(call newOrgUnit,$(name),$(parentId))
+new: requires.option(name)
+new: requires.option(parentId)
+	$(call newOrgUnit,$(name),$(parentId))
 
 .PHONY: all
 all: ## Creates Security, Infrastructure, Sandbox, Workloads, PolicyStaging, Deployments, Suspended OUs
 all: AWS_ORG_UNITS = Security Infrastructure Sandbox Workloads PolicyStaging Deployments Suspended
-all: parentIdOptionRequired
-	@ $(foreach ou, $(AWS_ORG_UNITS), $(call newOrgUnit,$(ou),$(parentId));)
+all: requires.option(parentId)
+	$(foreach ou, $(AWS_ORG_UNITS), $(call newOrgUnit,$(ou),$(parentId));)
