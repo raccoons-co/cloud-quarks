@@ -8,7 +8,7 @@
 ## Simply run
 
 ````sh
-curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile --output Makefile
+curl -fsSLO https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-cdk/Makefile
 ````
 
 ````sh

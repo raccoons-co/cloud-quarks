@@ -5,7 +5,7 @@ is aws commands wrapper that automates deployment of common AWS Service Control 
 Simply install at AWS CloudShell
 
 ````html
-curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/Makefile --output Makefile
+curl -fsSLO https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/Makefile
 ````
 
 ```shell
