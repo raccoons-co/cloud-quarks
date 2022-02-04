@@ -3,6 +3,8 @@
 #
 # Simply install at AWS CloudShell
 # curl -fsSL https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/Makefile --output Makefile
+#
+# make help
 
 CQ_BASE_URL = https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp
 CQ_HOME_DIR = ~/.cloud-quark/aws-scp
@@ -10,20 +12,21 @@ CQ_HOME_DIR = ~/.cloud-quark/aws-scp
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
+# Transfers cloud quark from remote
 .PHONY: CQ_CURL/%
 CQ_CURL/%:
-	curl -fsSL $(CQ_BASE_URL)/$(@F)
+	@ curl -fsSL $(CQ_BASE_URL)/$(@F)
 
 # Makes Cloud Quark home directory if not exists. Create intermediate directories as required.
 $(CQ_HOME_DIR):
-	[ -d $@ ] || mkdir -p $@
+	@ [ -d $@ ] || mkdir -p $@
 
 # Creates policy JSON file under CQ_HOME_DIR
 $(CQ_HOME_DIR)/%.json: $(CQ_HOME_DIR)
-	curl -fsSL $(CQ_BASE_URL)/$(@F) \
+	@ curl -fsSL $(CQ_BASE_URL)/$(@F) \
 		--output $@
 
-# Creates AWS SCP
+# Creates AWS SCP in your AWS organization
 .PHONY: CQ_AWSSCP/%
 CQ_AWSSCP/%: $(CQ_HOME_DIR)/%.json
 	aws organizations create-policy \
