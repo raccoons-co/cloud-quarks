@@ -18,7 +18,7 @@ CQ_HOME_DIR = ~/.cloud-quark/aws-scp
 # Transfers cloud quark from remote
 .PHONY: http.get(%)
 http.get(%):
-	curl -fsSL $(CQ_BASE_URL)/$%
+	@ curl -fsSL $(CQ_BASE_URL)/$%
 
 # Makes Cloud Quark home directory if not exists. Create intermediate directories as required.
 $(CQ_HOME_DIR):
