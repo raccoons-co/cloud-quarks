@@ -46,17 +46,17 @@ help: ## Print this help
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
 # Checks is specifying policy option is strictly required.
-.PHONY: requiresOptionPolicy
-requiresOptionPolicy:
-	@ [ $(policy) ] || ( make help; exit 1 )
+.PHONY: requires.option(%)
+requires.option(%):
+	@ [ $($%) ] || ( make help; exit 1 )
 
 .PHONY: list
 list: http.get(list) ## Lists all available AWS service control policies
 
 .PHONY: show
-show: requiresOptionPolicy
+show: requires.option(policy)
 show: http.get($(policy).json) ## Shows specified AWS service control policy
 
 .PHONY: deploy
-deploy: requiresOptionPolicy
+deploy: requires.option(policy)
 deploy: AWSSCP.new($(policy)) ## Deploys a new AWS service control policy
