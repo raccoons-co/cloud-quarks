@@ -15,14 +15,14 @@
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
-# $(call getRootId) - Returns root Id of current AWS organisation
+# $(call AWSORG.getRootId) - Returns root Id of current AWS organisation
 # Issue: Unknown effect if multiple roots
-define getRootId
+define AWSORG.getRootId
 	@ aws organizations list-roots | grep -o '"Id": "[^"]*' | cut -d\" -f 4
 endef
 
-# $(call newOrgUnit,$(name),$(parentId)) - Creates a new OU specified with name under parent OU id
-define newOrgUnit
+# $(call AWSORG.newUnit,$(name),$(parentId)) - Creates a new OU specified with name under parent OU id
+define AWSORG.newUnit
 	@ aws organizations create-organizational-unit --name $(1) --parent-id $(2)
 endef
 
@@ -40,17 +40,18 @@ requires.option(%):
 
 .PHONY: rootId
 rootId: ## Returns the identity of the root
-	$(call getRootId)
+	$(call AWSORG.getRootId)
 
 # Use single quotes and escaping spaces to allow spaces i.e. 'Policy\ Staging'
 .PHONY: new
 new: ## Creates a new OU with 'name' and 'parentId'
 new: requires.option(name)
 new: requires.option(parentId)
-	$(call newOrgUnit,$(name),$(parentId))
+new:
+	$(call AWSORG.newUnit,$(name),$(parentId))
 
 .PHONY: all
 all: ## Creates Security, Infrastructure, Sandbox, Workloads, PolicyStaging, Deployments, Suspended OUs
 all: AWS_ORG_UNITS = Security Infrastructure Sandbox Workloads PolicyStaging Deployments Suspended
 all: requires.option(parentId)
-	$(foreach ou, $(AWS_ORG_UNITS), $(call newOrgUnit,$(ou),$(parentId));)
+	$(foreach ou, $(AWS_ORG_UNITS), $(call AWSORG.newUnit,$(ou),$(parentId));)
