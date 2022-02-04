@@ -1,7 +1,9 @@
 # Cloud Quarks
+
 <em>Make your cloud.</em>
 
-Cloud Quarks are small, shareable code that helps to automate repeated processes, speed up project setup.
+Cloud Quarks are small, shareable code that helps to automate repeated processes, speed up project
+setup.
 
 Self documented Makefile approach.
 
