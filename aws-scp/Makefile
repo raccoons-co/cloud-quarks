@@ -36,7 +36,7 @@ CQ_AWSSCP/%: $(CQ_HOME_DIR)/%.json
 		--type SERVICE_CONTROL_POLICY \
 		--name $(@F) \
 		--description $(@F) \
-		--content $<
+		--content file://$<
 
 .PHONY: help
 help: ## Print this help
