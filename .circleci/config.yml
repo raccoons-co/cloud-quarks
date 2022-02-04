@@ -27,7 +27,7 @@ commands:
 # Jobs are collections of steps.
 jobs:
   # Describes job steps to execute Makefile validation with Debian Linux.
-  testMakefileDebian:
+  debianLinux_CQ_AWSSCP:
     docker:
       - image: cimg/node:16.3.0
     steps:
@@ -35,7 +35,7 @@ jobs:
           os: 'Debian'
 
   # Describes job steps to execute Makefile validation with Amazon Linux.
-  testMakefileAmazonLinux:
+  amazonLinux_CQ_AWSSCP:
       docker:
         - image: amazonlinux:latest
       steps:
@@ -65,7 +65,7 @@ workflows:
     jobs:
       #- shellcheck/check:
       #    dir: ./aws-cdk
-      - testMakefileDebian
-      - testMakefileAmazonLinux
+      - debianLinux_CQ_AWSSCP
+      - amazonLinux_CQ_AWSSCP
       #- testMakefileMacOs
 
