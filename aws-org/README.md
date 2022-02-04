@@ -7,7 +7,7 @@ https://aws.amazon.com/blogs/mt/best-practices-for-organizational-units-with-aws
 ````
 Simply install at AWS CloudShell
 ````shell
-curl -fsSLO https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile
+curl -O https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-org/Makefile
 ````
 ```shell
 % make help              

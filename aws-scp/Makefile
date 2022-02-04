@@ -2,7 +2,7 @@
 # is aws commands wrapper that automates deployment of common AWS Service Control Policies
 #
 # Simply install at AWS CloudShell
-# curl -fsSLO https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/Makefile
+# curl -O https://raw.githubusercontent.com/raccoons-co/cloud-quarks/main/aws-scp/Makefile
 #
 # make help
 #
@@ -26,7 +26,8 @@ $(CQ_HOME_DIR):
 
 # Creates policy JSON file under CQ_HOME_DIR
 $(CQ_HOME_DIR)/%.json: $(CQ_HOME_DIR) # Depends on home directory
-	@ curl -fsSL -H 'Cache-Control: no-cache' --remote-name $(CQ_BASE_URL)/$(@F)
+	@ curl -fsSL -H 'Cache-Control: no-cache' $(CQ_BASE_URL)/$(@F) \
+		--output $@
 
 # Creates AWS SCP in your AWS organization
 .PHONY: AWSSCP.new(%)
