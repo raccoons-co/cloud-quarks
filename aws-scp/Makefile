@@ -39,7 +39,7 @@ AWSSCP.new(%): $(CQ_HOME_DIR)/%.json # Depends on downloaded SCP JSON file
 		--content file://$<
 
 .PHONY: help
-help: ## Print this help
+help: ## Prints this help
 	@ echo "AWS-SCP cloud quark automates deployment of common AWS Service Control Policies."
 	@ echo "Usage: make <target> [policy=<aws_scp_name>]"
 	@ echo "Targets:"

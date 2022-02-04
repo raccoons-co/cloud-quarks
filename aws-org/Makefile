@@ -27,7 +27,7 @@ define AWSORG.newUnit
 endef
 
 .PHONY: help
-help: ## Print this help
+help: ## Prints this help
 	@ echo "AWS-ORG cloud quark automates creation of AWS Organizational Units."
 	@ echo "Usage: make <target> [parentId=<aws_ou_id>] [name=<aws_ou_name>]"
 	@ echo "Targets:"
