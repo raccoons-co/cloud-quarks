@@ -1,6 +1,6 @@
 # Cloud Quarks
 
-<em>Make your cloud.</em>
+<em>Make a cloud macro paradigm.</em>
 
 Cloud Quarks are small, shareable code that helps to automate repeated processes, speed up project
 setup.
