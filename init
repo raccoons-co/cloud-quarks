@@ -1,0 +1,1 @@
+alias cq='f(){cd ~/cloud-quarks; local p=$1; shift 1; make -C $p $@; }; f'
