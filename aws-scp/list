@@ -1,3 +1,4 @@
 DenyAll
 DenyLeaveOrganization
 DenyModifyBilling
+DenyRoot
