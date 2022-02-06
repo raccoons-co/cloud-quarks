@@ -26,17 +26,17 @@ define AWSORG.newUnit
 	aws organizations create-organizational-unit --name $(1) --parent-id $(2)
 endef
 
+# Requires an explicit option to call the target. E.g. make <target> option=value.
+.PHONY: requires.option(%)
+requires.option(%):
+	@ [ $($%) ] || ( $(MAKE) help; exit 1 )
+
 .PHONY: help
 help: ## Prints this help
 	@ echo "AWS-ORG cloud quark automates creation of AWS Organizational Units."
 	@ echo "Usage: make <target> [parentId=<aws_ou_id>] [name=<aws_ou_name>]"
 	@ echo "Targets:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
-
-# Requires specifying option to make a target.
-.PHONY: requires.option(%)
-requires.option(%):
-	@ [ $($%) ] || ( $(MAKE) help; exit 1 )
 
 .PHONY: rootId
 rootId: ## Returns the identity of the root

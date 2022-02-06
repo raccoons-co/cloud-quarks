@@ -15,7 +15,7 @@ CQ_HOME_DIR = ~/.cloud-quark/aws-scp
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
-# Checks is specified option is strictly required for the target.
+# Requires an explicit option to call the target. E.g. make <target> option=value.
 .PHONY: requires.option(%)
 requires.option(%):
 	@ [ $($%) ] || ( $(MAKE) help; exit 1 )
