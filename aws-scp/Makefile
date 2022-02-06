@@ -18,7 +18,7 @@ CQ_HOME_DIR = ~/.cloud-quark/aws-scp
 # Checks is specified option is strictly required for the target.
 .PHONY: requires.option(%)
 requires.option(%):
-	@ [ $($%) ] || ( make help; exit 1 )
+	@ [ $($%) ] || ( $(MAKE) help; exit 1 )
 
 # Transfers cloud quark from remote
 .PHONY: http.get(%)

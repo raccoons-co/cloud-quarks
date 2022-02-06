@@ -36,7 +36,7 @@ help: ## Prints this help
 # Requires specifying option to make a target.
 .PHONY: requires.option(%)
 requires.option(%):
-	@ [ $($%) ] || ( make help; exit 1 )
+	@ [ $($%) ] || ( $(MAKE) help; exit 1 )
 
 .PHONY: rootId
 rootId: ## Returns the identity of the root
