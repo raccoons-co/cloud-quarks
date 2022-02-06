@@ -15,6 +15,11 @@ CQ_HOME_DIR = ~/.cloud-quark/aws-scp
 # Sets default target to handle make execution with no arguments
 .DEFAULT_GOAL := help
 
+# Checks is specified option is strictly required for the target.
+.PHONY: requires.option(%)
+requires.option(%):
+	@ [ $($%) ] || ( make help; exit 1 )
+
 # Transfers cloud quark from remote
 .PHONY: http.get(%)
 http.get(%):
@@ -44,11 +49,6 @@ help: ## Prints this help
 	@ echo "Usage: make <target> [policy=<aws_scp_name>]"
 	@ echo "Targets:"
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
-
-# Checks is specified option is strictly required for the target.
-.PHONY: requires.option(%)
-requires.option(%):
-	@ [ $($%) ] || ( make help; exit 1 )
 
 .PHONY: list
 list: http.get(list) ## Lists all available AWS service control policies
