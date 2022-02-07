@@ -1,5 +1,7 @@
 DenyAddInternetGateway
 DenyAll
+DenyAllAsiaPacificRegions
+DenyAllEuropeRegions
 DenyLeaveOrganization
 DenyModifyBilling
 DenyRoot
