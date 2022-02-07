@@ -16,7 +16,7 @@ Usage: make <target> [parentId=<aws_ou_id>] [name=<aws_ou_name>]
 Targets:
 all              Creates Security, Infrastructure, Sandbox, Workloads, PolicyStaging, Deployments, Suspended OUs
 help             Print this help
-new              Creates a new OU with 'name' and 'parentId'
+newUnit          Creates a new OU with 'name' and 'parentId'
 rootId           Returns the identity of the root
 ````
 Update target `all` with your OUs and
