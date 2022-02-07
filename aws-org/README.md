@@ -19,7 +19,7 @@ help             Print this help
 new              Creates a new OU with 'name' and 'parentId'
 rootId           Returns the identity of the root
 ````
-Customize AWS_ORG_UNITS list with your OUs and
+Update target `all` with your OUs and
 ````shell
 make rootId | xargs -I{} make all parentId={}
 ````

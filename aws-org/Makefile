@@ -9,7 +9,7 @@
 #
 # make help
 #
-# Customize AWS_ORG_UNITS list with your OUs and
+# Update target `all` with your OUs and
 #   make rootId | xargs -I{} make all parentId={}
 
 # Sets default target to handle make execution with no arguments
