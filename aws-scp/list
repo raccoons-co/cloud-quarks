@@ -1,7 +1,11 @@
 DenyAddInternetGateway
 DenyAll
+DenyAllAfricaRegions
 DenyAllAsiaPacificRegions
+DenyAllCanadaRegions
 DenyAllEuropeRegions
+DenyAllMiddleEastRegions
+DenyAllSouthAmericaRegions
 DenyLeaveOrganization
 DenyModifyBilling
 DenyRoot

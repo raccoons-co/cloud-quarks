@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyAllAfricaRegions",
+            "Effect": "Deny",
+            "Action": [
+                "*"
+                ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestedRegion": [
+                        "af-south-1"
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyAllCanadaRegions",
+            "Effect": "Deny",
+            "Action": [
+                "*"
+                ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestedRegion": [
+                        "ca-central-1"
+                    ]
+                }
+            }
+        }
+    ]
+}

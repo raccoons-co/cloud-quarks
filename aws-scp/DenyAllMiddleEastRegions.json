@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyAllMiddleEastRegions",
+            "Effect": "Deny",
+            "Action": [
+                "*"
+                ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestedRegion": [
+                        "me-south-1"
+                    ]
+                }
+            }
+        }
+    ]
+}
